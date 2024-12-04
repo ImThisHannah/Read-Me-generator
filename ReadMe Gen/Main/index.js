@@ -1,10 +1,8 @@
-// Imported required packages
 import fs from 'fs';
 import path from 'path';
 import inquirer from 'inquirer';
 import generateMarkdown from './utils/generateMarkdown.js';
 
-// Array of questions for user input
 const questions = [
   {
     type: 'input',
@@ -44,24 +42,14 @@ const questions = [
     message: 'What command should be run to run tests?',
     default: 'npm test',
   },
-  {
-    type: 'input',
-    name: 'usage',
-    message: 'What does the user need to know about using the repo?',
-  },
-  {
-    type: 'input',
-    name: 'contributing',
-    message: 'What does the user need to know about contributing to the repo?',
-  },
+  
+
 ];
 
-// Function to write README file using the user input
 function writeToFile(fileName, data) {
   return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
-// Function to initialize app
 function init() {
   inquirer.prompt(questions).then((inquirerResponses) => {
     console.log('Generating README...');
